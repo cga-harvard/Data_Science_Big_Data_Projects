@@ -29,7 +29,13 @@ createdb -h localhost -p $j -O $USER partisandb
 ### try to connect 
 psql -h localhost -p $j partisandb
 
+# Check running jobs
+ps ux
+sacct -o jobid,jobname,nodelist,state
 
-# OmniSci - Running without App
-# Omniscio- Running with App
+# Copying data to node
+scp test.csv dkakkar@login.rc.fas.harvard.edu:/n/scratchssdlfs/cga/partisan_analysis/
+
+## OmniSci - Running without App
+## Omnisci - Running with App
 
