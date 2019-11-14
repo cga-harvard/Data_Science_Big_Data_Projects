@@ -1,0 +1,14 @@
+<form action="/node/<%= host %>/<%= port %>/" method="post" target="_blank">
+  <button class="btn btn-primary" type="submit">
+    <i class="fa fa-eye"></i> Connect to Omnisci
+  </button>
+</form>
+<br>
+For the time being the proxy does not work for this application.<br>
+You can connect by tunneling via the login nodes:
+<br>
+<br>
+1. ssh -NL <%= port %>:<%= host %>:<%= port %> <%= ENV['USER'] %>@login.rc.fas.harvard.edu
+<br>
+2. open http://localhost:<%= port %> in your browser <a href="http://localhost:<%= port %>" target="_blank" >link</a>
+<br>

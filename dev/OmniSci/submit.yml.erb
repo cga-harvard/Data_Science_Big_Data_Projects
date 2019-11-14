@@ -1,0 +1,14 @@
+---
+batch_connect:
+  template: "basic"
+script:
+  reservation_id: <%= custom_reservation %>
+  email: <%= custom_email_address %>
+  native:
+    - "--mem=<%= custom_memory_per_node.blank? ? 2 : custom_memory_per_node.to_s %>G"
+    - "--time=<%= custom_time.blank? ? "04:00:00" : custom_time.to_s %>"
+    - "--cpus-per-task=<%= custom_num_cores.blank? ? 1 : custom_num_cores.to_i %>"
+   <%- if !custom_num_gpus.to_i.zero? -%>
+    - "--gres=gpu:<%= custom_num_gpus.to_i %>"
+   <%- end -%>
+

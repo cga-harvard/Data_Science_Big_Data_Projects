@@ -1,0 +1,67 @@
+---
+title: "OmniSci"
+cluster: "odyssey3"
+attributes:
+  modules: null
+  extra_jupyter_args: ""
+  custom_time:
+    label: "Allocated Time (expressed in MM , or HH:MM:SS , or DD-HH:MM)."
+    value: "04:00:00"
+    widget: text_field
+  bc_queue: 
+    value: "shared"
+  custom_email_address:
+    label: email address for status notification
+    widget: text_field
+  custom_memory_per_node:
+    label: Memory Allocation in GB
+    value: 4
+    min:   1
+    step:  1
+    max:   256
+    widget: number_field
+  custom_num_cores:
+    label: Number of cores
+    value: 1
+    min:   1
+    step:  1
+    max:   64
+    widget: number_field
+    help: "Number of Cpus to allocate"
+  custom_num_gpus:
+    label: Number of GPUs
+    value: 0
+    min:   0
+    step:  1
+    max:   8
+    widget: number_field
+    help: "Number of GPUs to allocate. Available only on GPU enabled partitions"
+  custom_reservation:
+    label: Reservation
+    widget: text_field
+  envscript:
+    label: script to be executed before starting OmniSci
+    widget: text_field
+    help: "This will be executed before starting the container outside the container"
+  omniroot:
+    label: location to map omnisci-storage
+    widget: text_field
+    help: "This is the folder location that will be mapped to omnisci-storage. It should contain the subfolders {Datasets,omnisci-storage} (default: /scratch/$USER/$SLURM_JOB_ID)"
+  bc_account:
+    label: "Slurm Account"
+    help: "If you are not in multiple labs please leave this blank."
+
+form:
+  - modules
+  - extra_jupyter_args
+  - bc_queue
+  - custom_memory_per_node
+  - custom_num_cores
+  - custom_num_gpus
+  - custom_time
+  - omniroot
+  - envscript
+  - bc_email_on_started
+  - custom_email_address
+  - custom_reservation
+  - bc_account

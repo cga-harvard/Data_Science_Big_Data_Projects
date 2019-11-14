@@ -1,0 +1,10 @@
+---
+name: OmniSci
+category: Interactive Apps
+subcategory: Servers
+role: batch_connect
+description: |
+  This app will launch [OmniSci] on a compute node on the  [FAS-RC] cluster:
+
+  [OmniSci]:  https://www.omnisci.com/platform/omniscidb
+  [FAS-RC]: https://www.rc.fas.harvard.edu

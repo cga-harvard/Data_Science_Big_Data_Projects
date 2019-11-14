@@ -1,0 +1,42 @@
+#!/bin/env bash
+
+# Benchmark info
+echo "TIMING - Starting main script at: $(date)"
+
+# Set working directory 
+cd "${OMNIROOT}"
+
+#
+# Start Jupyter Notebook Server
+#
+
+<%- unless context.modules.blank? -%>
+# Purge the module environment to avoid conflicts
+module purge
+
+# Load the require modules
+module load <%= context.modules %>
+
+# List loaded modules
+module list
+<%- end -%>
+
+# Benchmark info
+echo "TIMING - Starting omnisci at: $(date)"
+export container_image=/n/scratchssdlfs/singularity_images/FAS/omnisci/omnisci-ee-cuda_latest.sif 
+
+# enable this only if needed for debug purpose. note that the password will appear in the output 
+set -x
+
+export SING_GPU=""
+
+<%- if !context.custom_num_gpus.to_i.zero? -%>
+export SING_GPU="--nv -B /usr/lib64/nvidia:/usr/local/nvidia/lib64 "
+<%- end -%>
+
+## bind some extra stuff to be able to talk to slurm from within the container
+export SING_BINDS=" -B /etc/nsswitch.conf -B /etc/sssd/ -B /var/lib/sss -B /etc/slurm -B /slurm -B /var/run/munge  -B `which sbatch ` -B `which srun ` -B `which sacct ` -B `which scontrol `   -B /usr/lib64/slurm/ "
+export SING_BINDS="$SING_BINDS  -B ${OMNIROOT}/omnisci-storage:/omnisci-storage  -B ${OMNIROOT}/Datasets:/omnisci/sample_datasets "
+
+SINGULARITYENV_MAPD_WEB_PORT=${MAPD_WEB_PORT} SINGULARITYENV_MAPD_TCP_PORT=${MAPD_TCP_PORT} SINGULARITYENV_MAPD_HTTP_PORT=${MAPD_HTTP_PORT} SINGULARITYENV_MAPD_CALCITE_PORT=${MAPD_CALCITE_PORT} singularity run $SING_GPU $SING_BINDS --pwd /omnisci $container_image 
+
