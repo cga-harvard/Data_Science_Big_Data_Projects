@@ -34,7 +34,7 @@ ps ux
 sacct -o jobid,jobname,nodelist,state
 
 # Copying data to node
-scp test.csv dkakkar@login.rc.fas.harvard.edu:/n/scratchssdlfs/cga/partisan_analysis/
+scp test.csv username@login.rc.fas.harvard.edu:/n/scratchssdlfs/cga/partisan_analysis/
 
 ## OmniSci - Running without App
 ## Omnisci - Running with App
