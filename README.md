@@ -29,3 +29,7 @@ createdb -h localhost -p $j -O $USER partisandb
 ### try to connect 
 psql -h localhost -p $j partisandb
 
+
+# OmniSci - Running without App
+# Omniscio- Running with App
+
