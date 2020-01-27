@@ -1,0 +1,44 @@
+#!/bin/env bash
+
+# Benchmark info
+echo "TIMING - Starting Postgresql at: $(date)"
+
+# enable this only if needed for debug purpose.
+set -x
+
+module purge 
+module load postgis/2.5.0-fasrc01
+
+<%- unless context.envscript.blank? -%>
+## execute script provided by user
+[ -f <%= context.envscript.to_s %> ] && source <%= context.envscript.to_s %>
+<%- end -%>
+
+<%- if !context.custom_initdb.to_i.zero? -%>
+initdb -D $DBDATAFOLDER -U $USER 
+<%- end -%>
+
+[ -d $MYSOCKET ] && echo unix_socket_directories = "'$MYSOCKET'"  >>  $DBDATAFOLDER/postgresql.conf
+echo port = "$DBPORT"  >>  $DBDATAFOLDER/postgresql.conf
+echo listen_addresses = "'*'"  >>  $DBDATAFOLDER/postgresql.conf
+
+cat >> $DBDATAFOLDER/pg_hba.conf <<EOF
+host    all     $USER             0.0.0.0/0                 trust
+host    all     $USER             ::/0                      trust
+EOF
+
+
+#start the server
+pg_ctl -D $DBDATAFOLDER -l logfile start 
+sleep 5
+mypid=`pg_ctl -D $DBDATAFOLDER status  | sed 's/)//' | awk 'NR==1{print $NF}'`
+
+<%- if !context.custom_createdb.to_i.zero? -%>
+## create db 
+createdb -h localhost -p $DBPORT  -O $USER $DBNAME
+<%- end -%>
+
+echo "wait for $mypid to exit"
+## cannot use $mypid because it's not a children of this process
+while sleep 60 ; do kill -0 $mypid || break ; done
+

@@ -1,0 +1,84 @@
+---
+title: "Postgresql db"
+cluster: "odyssey3"
+attributes:
+  extra_jupyter_args: ""
+  custom_time:
+    label: "Allocated Time (expressed in MM , or HH:MM:SS , or DD-HH:MM)."
+    value: "04:00:00"
+    widget: text_field
+  bc_queue: 
+    value: "shared"
+  custom_email_address:
+    label: email address for status notification
+    widget: text_field
+  custom_memory_per_node:
+    label: Memory Allocation in GB
+    value: 4
+    min:   1
+    step:  1
+    max:   256
+    widget: number_field
+  custom_num_cores:
+    label: Number of cores
+    value: 2
+    min:   1
+    step:  1
+    max:   64
+    widget: number_field
+    help: "Number of Cpus to allocate"
+  custom_num_gpus:
+    label: Number of GPUs
+    value: 0
+    min:   0
+    step:  1
+    max:   8
+    widget: number_field
+    help: "Number of GPUs to allocate. Available only on GPU enabled partitions"
+  custom_reservation:
+    label: Reservation
+    widget: text_field
+  envscript:
+    label: script to be executed before starting postgresql
+    widget: text_field
+    help: "This will be executed before starting the database"
+  custom_initdb:
+    label: "Initialize the Database store"
+    widget: check_box
+    value: 1
+    help: |
+          **_Checking this box will initialize the database folder_**
+  dbdatafolder:
+    label: location of the database storage area
+    widget: text_field
+    help: "This is the folder location that will be used to store the  database. (default: /scratch/$USER/$SLURM_JOB_ID)"
+  custom_createdb:
+    label: "Create DB"
+    widget: check_box
+    value: 1
+    help: |
+          **_Checking this box will create a database_**
+  dbname:
+    label: name for the database
+    widget: text_field
+    help: "This is the name of the database. (default: $USER )"
+  bc_account:
+    label: "Slurm Account"
+    help: "If you are not in multiple labs please leave this blank."
+
+form:
+  - extra_jupyter_args
+  - bc_queue
+  - custom_memory_per_node
+  - custom_num_cores
+  - custom_num_gpus
+  - custom_time
+  - custom_initdb
+  - dbdatafolder
+  - custom_createdb
+  - dbname
+  - envscript
+  - bc_email_on_started
+  - custom_email_address
+  - custom_reservation
+  - bc_account
