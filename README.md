@@ -41,7 +41,11 @@ Please follow the instruction here to upload merged geotweets to Harvard HPC:
 ### Launching PostGIS on FASRC
 
 - Login to FASRC using the login: ssh user@login.rc.fas.harvard.edu
-- Download the 'dev' folder from this github repo to your user directory: /n/home06/$user/
+- Make a new folder fasrc under your user dir: mkdir fasrc
+- Download the 'dev' and 'data' folder from this github repo to your user directory under new folder fasrc: 
+scp -r dev user@login.rc.fas.harvard.edu:/n/home06/dkakkar/fasrc/
+scp -r data user@login.rc.fas.harvard.edu:/n/home06/dkakkar/fasrc/
+
 
 ### References:
 
