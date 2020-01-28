@@ -1,4 +1,4 @@
-# Merged Geotweet Storage
+## Merged Geotweet Storage
 
 Please follow the instruction here to upload merged geotweets to Harvard HPC:
 
