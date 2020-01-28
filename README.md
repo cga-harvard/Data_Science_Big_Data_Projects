@@ -25,7 +25,7 @@ and request your account specifying Wendy as PI (see image below)
   - Quickstart guide on FASRC: https://www.rc.fas.harvard.edu/resources/quickstart-guide/
 
 
-![image](https://github.com/cga-harvard/GIS_Apps_on_HPC/blob/master/cga_account_request.png)
+![image](https://github.com/cga-harvard/GIS_Apps_on_HPC/blob/master/images/cga_account_request.png)
 
 
 
@@ -43,6 +43,8 @@ Please follow the instruction here to upload merged geotweets to Harvard HPC:
 - Login to FASRC using the login: ssh user@login.rc.fas.harvard.edu
 - Copy folder fasrc from lab directory to your user directory: mv /n/enos_lab/dkakkar/partisan/fasrc /n/home06/$user/fasrc/
 - Now the app will appear under your interactive session on https://vdi.rc.fas.harvard.edu/
+
+![image](https://github.com/cga-harvard/GIS_Apps_on_HPC/blob/master/images/PostGIS_1.png)
 
 
 
