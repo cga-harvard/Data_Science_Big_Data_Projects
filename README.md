@@ -46,6 +46,11 @@ Please follow the instruction here to upload merged geotweets to Harvard HPC:
 
 ![image](https://github.com/cga-harvard/GIS_Apps_on_HPC/blob/master/images/PostGIS_1.png)
 
+- Click on PostGIS app to go to launch form
+
+
+
+
 
 
 ### References:
