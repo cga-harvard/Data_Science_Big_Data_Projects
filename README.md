@@ -25,10 +25,6 @@ and request your account specifying Wendy as PI (see image below)
   - Quickstart guide on FASRC: https://www.rc.fas.harvard.edu/resources/quickstart-guide/
 
 
-
-
-
-
 ![image](https://github.com/cga-harvard/GIS_Apps_on_HPC/blob/master/cga_account_request.png)
 
 
@@ -41,6 +37,11 @@ Please follow the instruction here to upload merged geotweets to Harvard HPC:
 - Go to CGA's storage space: cd  /n/cga
 - Go to merged geotweets storage folder: cd  /n/cga/geotweets_merged
 - Store the data here according to most appropriate structure you seem fit
+
+### Launching PostGIS on FASRC
+
+- Login to FASRC using the login: ssh user@login.rc.fas.harvard.edu
+- Download the 'dev' folder from this github repo to your user directory: /n
 
 ### References:
 
