@@ -1,9 +1,13 @@
 ## Storage space on HPC
 
-## New Accounts on HPC
+## New CGA Accounts on HPC
 
 - Go to https://portal.rc.fas.harvard.edu/request/account/new and request your account
 specifying Wendy as PI 
+
+
+
+![image](https://github.com/cga-harvard/GIS_Apps_on_HPC/blob/master/cga_account_request.png)
 
 
 
