@@ -2,8 +2,8 @@
 
 ## New CGA Accounts on HPC
 
-- Go to https://portal.rc.fas.harvard.edu/request/account/new and request your account
-specifying Wendy as PI 
+- Go to https://portal.rc.fas.harvard.edu/request/account/new  
+and request your account specifying Wendy as PI 
 
 
 
