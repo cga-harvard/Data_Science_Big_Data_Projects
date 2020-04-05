@@ -1,4 +1,5 @@
 import pandas as pd
+import glob
 import os
 import numpy as np
 from pathlib import Path
@@ -85,9 +86,13 @@ def process(df):
             temp.to_csv(filename, sep = '\t', header = True, index = False)
             # temp.to_parquet(filename,compression='snappy',engine='auto',index=None)
 
-chunksize = 1000000
-for chunk in pd.read_csv('/n/holyscratch01/cga/dkakkar/data/geotweets/input/twitter_2020_03.csv', sep = '|', chunksize=chunksize): #Change file name and path here
-    process(chunk)
+path = '/n/holyscratch01/cga/dkakkar/data/geotweets/results/2019/input' # use your path
+all_files = glob.glob(path + "/*.csv")
+for filename in all_files:
+    print(filename)
+    chunksize = 1000000
+    for chunk in pd.read_csv(filename, sep = '|', chunksize=chunksize): #Change file name and path here
+        process(chunk)
 #os.chdir('../')
 os.system('gzip *.csv')
 #os.system('mv *.gzip /n/holyscratch01/cga/dkakkar/data/geotweets/results/')
