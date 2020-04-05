@@ -10,7 +10,7 @@ path = '/n/holyscratch01/cga/dkakkar/data/geotweets/results/2019_12' # use your 
 all_files = glob.glob(path + "/*.gz")
 
 print("Connecting to Omnisci")
-conn=connect(user="admin", password="HyperInteractive", host="localhost", port=7464, dbname="omnisci") #use your port number
+conn=connect(user="admin", password="HyperInteractive", host="localhost", port=9398, dbname="omnisci") #use your port number
 print("Connected",conn)
 #query="DROP TABLE IF EXISTS geotweets"
 #coinn.execute(query)
@@ -41,7 +41,10 @@ for filename in all_files:
                'followers':0,'friends':0, 'user_favorites':0,'status':0,'latitude':0, 'longitude':0,
                'spatialerror':0}
     df.fillna(value=values, inplace = True)
-    #print(list(df.columns.values))
+    ### Enter the columns to be dropped here:
+    df.drop(['column_nameA', 'column_nameB'], axis=1, inplace=True)
+    #df.drop(['status', 'user_lang'], axis=1, inplace=True)
+ #iprint(list(df.columns.values))
 #frame.to_parquet('/n/holyscratch01/cga/dkakkar/data/gdelt.parquet.gzip',compression='gzip')
     try:
        conn.load_table("geotweets",df,create='infer',method='arrow')

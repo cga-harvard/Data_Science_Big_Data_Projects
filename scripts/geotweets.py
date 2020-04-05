@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 import numpy as np
 from pathlib import Path
 import shapely
@@ -85,5 +86,8 @@ def process(df):
             # temp.to_parquet(filename,compression='snappy',engine='auto',index=None)
 
 chunksize = 1000000
-for chunk in pd.read_csv('/n/holyscratch01/cga/dkakkar/data/geotweets/input/twitter_2020_02.csv', sep = '|', chunksize=chunksize): #Change file name and path here
+for chunk in pd.read_csv('/n/holyscratch01/cga/dkakkar/data/geotweets/input/twitter_2020_03.csv', sep = '|', chunksize=chunksize): #Change file name and path here
     process(chunk)
+#os.chdir('../')
+os.system('gzip *.csv')
+#os.system('mv *.gzip /n/holyscratch01/cga/dkakkar/data/geotweets/results/')
