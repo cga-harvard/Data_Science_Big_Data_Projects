@@ -93,6 +93,7 @@ for filename in all_files:
     chunksize = 1000000
     for chunk in pd.read_csv(filename, sep = '|', chunksize=chunksize): #Change file name and path here
         process(chunk)
+    os.system('gzip *.csv')
 #os.chdir('../')
-os.system('gzip *.csv')
+#os.system('gzip *.csv')
 #os.system('mv *.gzip /n/holyscratch01/cga/dkakkar/data/geotweets/results/')

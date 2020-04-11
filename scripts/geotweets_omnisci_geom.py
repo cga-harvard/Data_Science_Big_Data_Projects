@@ -1,4 +1,5 @@
 import pandas as pd
+#import geopandas
 from pymapd import connect
 from os import listdir
 import glob
@@ -6,7 +7,7 @@ from os.path import isfile, join
 import pyarrow as pa;import numpy as np
 
 
-path = '/n/holyscratch01/cga/dkakkar/data/geotweets/results/2020/output/' # use your path
+path = '/n/holyscratch01/cga/dkakkar/data/geotweets/results/2020/test/' # use your path
 all_files = glob.glob(path + "/*.gz")
 
 print("Connecting to Omnisci")
@@ -26,6 +27,7 @@ for filename in all_files:
       #print("Corrupt file",filename)
       continue
     df = df.drop(['geom'], axis = 'columns')
+    #df['geom']=geopandas.points_from_xy(df.longitude, df.latitude)
     #print(df.head())
     #df.columns=['GLOBALEVENTID','SQLDATE','MonthYear','Years','FractionDate','Actor1Code','Actor1Name','Actor1CountryCode','Actor1KnownGroupCode','Actor1EthnicCode','Actor1Religion1Code','Actor1Religion2Code','Actor1Type1Code','Actor1Type2Code','Actor1Type3Code','Actor2Code','Actor2Name','Actor2CountryCode','Actor2KnownGroupCode','Actor2EthnicCode','Actor2Religion1Code','Actor2Religion2Code','Actor2Type1Code','Actor2Type2Code','Actor2Type3Code','IsRootEvent','EventCode','EventBaseCode','EventRootCode','QuadClass','GoldsteinScale','NumMentions','NumSources','NumArticles','AvgTone','Actor1Geo_Type','Actor1Geo_FullName','Actor1Geo_CountryCode','Actor1Geo_ADM1Code','Actor1Geo_Lat','Actor1Geo_Long','Actor1Geo_FeatureID','Actor2Geo_Type','Actor2Geo_FullName','Actor2Geo_CountryCode','Actor2Geo_ADM1Code','Actor2Geo_Lat','Actor2Geo_Long','Actor2Geo_FeatureID','ActionGeo_Type','ActionGeo_FullName','ActionG]    #print(df.head(5))    #li.append(df)
 
@@ -52,7 +54,7 @@ for filename in all_files:
       #print("Inserted", filename)
     except:
        try:
-         conn.execute("Create table IF NOT EXISTS geotweets (message_id BIGINT,tweet_date TIMESTAMP(0),tweet_text TEXT ENCODING NONE,tags TEXT ENCODING DICT(32),tweet_lang TEXT ENCODING DICT(32),source TEXT ENCODING DICT(32),place TEXT ENCODING NONE, retweets SMALLINT, tweet_favorites SMALLINT,photo_url TEXT ENCODING DICT(32),quoted_status_id BIGINT,user_id BIGINT,user_name TEXT ENCODING NONE,user_location TEXT ENCODING NONE,followers SMALLINT,friends SMALLINT,user_favorites INT,status INT,user_lang TEXT ENCODING DICT(32),latitude FLOAT,longitude FLOAT,data_source TEXT ENCODING DICT(32),GPS TEXT ENCODING DICT(32),spatialerror FLOAT);")
+         conn.execute("Create table IF NOT EXISTS geotweets (message_id BIGINT,tweet_date TIMESTAMP(0),tweet_text TEXT ENCODING NONE,tags TEXT ENCODING DICT(32),tweet_lang TEXT ENCODING DICT(32),source TEXT ENCODING DICT(32),place TEXT ENCODING NONE, retweets SMALLINT, tweet_favorite SMALLINT,photo_url TEXT ENCODING DICT(32),quoted_status_id BIGINT,user_id BIGINT,user_name TEXT ENCODING NONE,user_location TEXT ENCODING NONE,followers SMALLINT,friends SMALLINT,user_favorites INT,status INT,user_lang TEXT ENCODING DICT(32),latitude FLOAT,longitude FLOAT,data_source TEXT ENCODING DICT(32),GPS TEXT ENCODING DICT(32),spatialerror FLOAT);")
          conn.load_table_columnar("geotweets", df,preserve_index=False) 
          #print ("Inserted columnar", filename) 
        except:
@@ -60,4 +62,7 @@ for filename in all_files:
          l_ni.append(filename)
          #print("Not inserted",filename)
          continue
+conn.execute("Create table geotweets_geom AS (Select message_id, tweet_date, tweet_text, tags, tweet_lang, source, place, retweets, tweet_favorite, photo_url,quoted_status_id, user_id, user_name, user_location, followers, friends, user_favorites, status, user_lang, latitude, longitude, data_source, GPS, spatialerror, ST_Point(longitude, latitude) as geom from geotweets)")
+ 
 #print(l_ni)
+conn.execute("Drop table geotweets")
