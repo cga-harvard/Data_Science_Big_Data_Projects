@@ -10,7 +10,7 @@ path = '/n/holyscratch01/cga/dkakkar/data/geotweets/2020/' # use your path
 all_files = glob.glob(path + "/*.gz")
 
 print("Connecting to Omnisci")
-conn=connect(user="admin", password="HyperInteractive", host="localhost", port=8856, dbname="omnisci") #use your port number
+conn=connect(user="admin", password="HyperInteractive", host="localhost", port=7249, dbname="omnisci") #use your port number
 print("Connected",conn)
 #query="DROP TABLE IF EXISTS geotweets"
 #coinn.execute(query)
@@ -31,13 +31,13 @@ for filename in all_files:
 
 #frame = pd.concat(li, axis=0, ignore_index=True)
     df.columns=['message_id','tweet_date','tweet_text','tags','tweet_lang','source','place','retweets','tweet_favorite', 'photo_url','quoted_status_id','user_id','user_name','user_location','followers','friends','user_favorites','status','user_lang','latitude','longitude','data_source','GPS','spatialerror'] 
-    cols = ['retweets', 'tweet_favorite', 'quoted_status_id', 'user_id',
+    cols = ['message_id', 'retweets', 'tweet_favorite', 'quoted_status_id', 'user_id',
                'followers','friends', 'user_favorites','status','user_lang','latitude', 'longitude',
                'spatialerror']
     df[cols] = df[cols].apply(pd.to_numeric, errors='coerce')
     #df['GPS'] = df['GPS'].astype('bool')
     df['tweet_date'] = pd.to_datetime(df['tweet_date'], errors='coerce')
-    values = {'retweets':0, 'tweet_favorites':0, 'quoted_status_id':0, 'user_id':0,
+    values = {'message_id':0, 'retweets':0, 'tweet_favorites':0, 'quoted_status_id':0, 'user_id':0,
                'followers':0,'friends':0, 'user_favorites':0,'status':0,'latitude':0, 'longitude':0,
                'spatialerror':0}
     df.fillna(value=values, inplace = True)
@@ -52,7 +52,7 @@ for filename in all_files:
       #print("Inserted", filename)
     except:
        try:
-         conn.execute("Create table IF NOT EXISTS geotweets (message_id TEXT ENCODING NONE,tweet_date TIMESTAMP(0),tweet_text TEXT ENCODING NONE,tags TEXT ENCODING DICT(32),tweet_lang TEXT ENCODING DICT(32),source TEXT ENCODING DICT(32),place TEXT ENCODING NONE, retweets SMALLINT, tweet_favorites SMALLINT,photo_url TEXT ENCODING DICT(32),quoted_status_id BIGINT,user_id BIGINT,user_name TEXT ENCODING NONE,user_location TEXT ENCODING NONE,followers SMALLINT,friends SMALLINT,user_favorites INT,status INT,user_lang TEXT ENCODING DICT(32),latitude FLOAT,longitude FLOAT,data_source TEXT ENCODING DICT(32),GPS TEXT ENCODING DICT(32),spatialerror FLOAT);")
+         conn.execute("Create table IF NOT EXISTS geotweets (message_id BIGINT,tweet_date TIMESTAMP(0),tweet_text TEXT ENCODING NONE,tags TEXT ENCODING DICT(32),tweet_lang TEXT ENCODING DICT(32),source TEXT ENCODING DICT(32),place TEXT ENCODING NONE, retweets SMALLINT, tweet_favorites SMALLINT,photo_url TEXT ENCODING DICT(32),quoted_status_id BIGINT,user_id BIGINT,user_name TEXT ENCODING NONE,user_location TEXT ENCODING NONE,followers SMALLINT,friends SMALLINT,user_favorites INT,status INT,user_lang TEXT ENCODING DICT(32),latitude FLOAT,longitude FLOAT,data_source TEXT ENCODING DICT(32),GPS TEXT ENCODING DICT(32),spatialerror FLOAT);")
          conn.load_table_columnar("geotweets", df,preserve_index=False) 
          #print ("Inserted columnar", filename) 
        except:

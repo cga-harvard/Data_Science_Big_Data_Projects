@@ -86,7 +86,7 @@ def process(df):
             temp.to_csv(filename, sep = '\t', header = True, index = False)
             # temp.to_parquet(filename,compression='snappy',engine='auto',index=None)
 
-path = '/n/holyscratch01/cga/dkakkar/data/geotweets_merged_daily/input' # use your path
+path = '/data/geotweets/input' # use your path
 all_files = glob.glob(path + "/*.csv")
 for filename in all_files:
     print(filename)

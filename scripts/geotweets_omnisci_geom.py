@@ -7,11 +7,11 @@ from os.path import isfile, join
 import pyarrow as pa;import numpy as np
 
 
-path = '/n/holyscratch01/cga/dkakkar/data/geotweets/results/2020/test/' # use your path
+path = '/n/holyscratch01/cga/dkakkar/data/geotweets/results/2020/' # use your path
 all_files = glob.glob(path + "/*.gz")
 
 print("Connecting to Omnisci")
-conn=connect(user="admin", password="HyperInteractive", host="localhost", port=7159, dbname="omnisci") #use your port number
+conn=connect(user="admin", password="HyperInteractive", host="localhost", port=8558, dbname="omnisci") #use your port number
 print("Connected",conn)
 #query="DROP TABLE IF EXISTS geotweets"
 #coinn.execute(query)
@@ -65,4 +65,4 @@ for filename in all_files:
 conn.execute("Create table geotweets_geom AS (Select message_id, tweet_date, tweet_text, tags, tweet_lang, source, place, retweets, tweet_favorite, photo_url,quoted_status_id, user_id, user_name, user_location, followers, friends, user_favorites, status, user_lang, latitude, longitude, data_source, GPS, spatialerror, ST_Point(longitude, latitude) as geom from geotweets)")
  
 #print(l_ni)
-conn.execute("Drop table geotweets")
+conn.execute("DROP TABLE IF EXISTS geotweets;")
