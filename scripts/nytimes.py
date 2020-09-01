@@ -25,7 +25,7 @@ df1['deaths']=pd.to_numeric(df1['deaths'], errors='coerce')
 #df1['fips']=pd.to_numeric(df1['fips'], errors='coerce')
 df1.drop(['date'],axis=1,inplace=True)
 #conn.execute("DROP table if exists usstates")
-conn=connect(user="admin", password="HyperInteractive", host="localhost", port=7159, dbname="omnisci") #use your port number
+conn=connect(user="admin", password="HyperInteractive", host="localhost", port=8222, dbname="omnisci") #use your port number
 conn.execute("DROP table if exists usstates")
 conn.load_table("usstates",df,create='infer',method='arrow')
 os.system("rm us-states.csv")
