@@ -247,23 +247,23 @@ if __name__ == '__main__':
     output_loc = get_output_location()
     db_params = get_db_params()
 
-    #salzburg_table_name = "Salzburg_table"
-    #cga_table_name = "cga_table"
+    salzburg_table_name = "Salzburg_table"
+    cga_table_name = "cga_table"
     conn = get_connection()
-    #create_table(conn, final_table,"merged_pkey")
-    #create_table(conn, "final_db", "pkey")
+    create_table(conn, final_table,"merged_pkey")
+    create_table(conn, "final_db", "pkey")
 
     salzburg_files, cga_files, temp_files = [],[], []
 
     chdir(salzburg_location)
     salzburg_files = list(glob("*.gz"))
     salzburg_files.sort()
-    #create_salzburg_table(conn, salzburg_table_name)
+    create_salzburg_table(conn, salzburg_table_name)
 
     chdir(cga_location)
     cga_files = list(glob("*.csv"))
     cga_files.sort()
-    #create_harvard_table(conn, cga_table_name)
+    create_harvard_table(conn, cga_table_name)
     index_salzburg,index_cga = 0,0
     cga_added, salzburg_added = False, False
     file_name = ""
