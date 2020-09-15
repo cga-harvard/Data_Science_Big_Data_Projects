@@ -1,5 +1,5 @@
 from glob import glob
-from os import chdir,getcwd
+from os import chdir,getcwd,system
 import psycopg2
 import datetime
 import pandas as pd
@@ -307,7 +307,10 @@ if __name__ == '__main__':
         if salzburg_added:
             chdir(salzburg_location)
             add_to_sbg_table(salzburg_files[index_salzburg], salzburg_table_name, db_params)
-            file_name = salzburg_files[index_salzburg][:-7]
+            if salzburg_files[index_salzburg][6] == '_':
+                file_name = salzburg_files[index_salzburg][0:5] + "0" + salzburg_files[index_salzburg][5:-7]
+            else:
+                file_name = salzburg_files[index_salzburg][:-7]
             index_salzburg += 1
 
         merge(conn)
@@ -317,3 +320,6 @@ if __name__ == '__main__':
         empty_table(conn, "merged_table")
         empty_table(conn, cga_table_name)
         empty_table(conn, salzburg_table_name)
+
+    chdir(output_loc)
+    system('gzip *.csv')
