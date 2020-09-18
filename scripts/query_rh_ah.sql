@@ -5,12 +5,12 @@ Drop table IF exists temp;
 Create table resultstdmean (address_id character varying(255),day date, tdmean FLOAT);
 
 
-\copy resultstdmean from '/n/holyscratch01/cga/dkakkar/data/resultstdmean.csv' (FORMAT csv, delimiter E'\t');
+\copy resultstdmean from '/n/holyscratch01/cga/dkakkar/data/resultstdmean.csv' (FORMAT csv, delimiter ',');
 
 Create table resultstmean (address_id character varying(255),day date, tmean FLOAT);
 
 
-\copy resultstmean from '/n/holyscratch01/cga/dkakkar/data/resultstmean1981.csv' (FORMAT csv, delimiter E'\t');
+\copy resultstmean from '/n/holyscratch01/cga/dkakkar/data/resultstmean1981.csv' (FORMAT csv, delimiter ',');
 
 
 Create table temp as (Select a.address_id, a.day, a.tdmean, b.tmean from resultstdmean a inner join resultstmean b on a.address_id=b.address_id AND a.day=b.day);
