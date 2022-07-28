@@ -22,6 +22,7 @@ for file in files:
     for i in range(len(temp['message_id'])):
         if temp['longitude'][i]=="True":
             temp['longitude'][i] = np.nan
+    #For finding tweets in US        
     #temp['in_usa'] = ((temp['latitude']>24) & (temp['latitude']<50) & (temp['longitude'].astype(float)>-125) & (temp['longitude'].astype(float)<-66))
     temp = temp.groupby('date')
    
@@ -39,6 +40,7 @@ df = df.groupby('date')
 
 df = pd.DataFrame({
     'nb_tweets': df['nb_tweets'].sum(),
+    #Sum of US tweets
     #'nb_us_tweets': df['nb_us_tweets'].sum()
 }).reset_index()
 
