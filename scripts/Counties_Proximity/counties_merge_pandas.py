@@ -10,7 +10,9 @@ merge_result_task1=pd.merge(counties,near,left_on='OID_',right_on='NEAR_FID')
 #select the targeted fields: IN_ID,FIPS,NEAR_DIST
 merge_result_task1=merge_result_task1[['IN_FID','FIPS','NEAR_DIST']]
 
-merge_result_task1=merge_result_task1.sort_values(by=['NEAR_DIST'])
+merge_result_task1['NEAR_DIST'] = merge_result_task1['NEAR_DIST'].astype(float)
+
+merge_result_task1 = merge_result_task1.sort_values(['NEAR_DIST'])
 
 #combine to one row
 fips_agg=merge_result_task1.groupby('IN_FID').agg({'FIPS':list})
