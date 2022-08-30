@@ -28,7 +28,7 @@ for file in files:
    
     temp = pd.DataFrame({
         'nb_tweets': temp['message_id'].count(),
-        #'nb_us_tweets': temp['in_usa'].sum()
+        'nb_us_tweets': temp['in_usa'].sum()
     }).reset_index()
     
     df = pd.concat([df, temp])
@@ -41,7 +41,7 @@ df = df.groupby('date')
 df = pd.DataFrame({
     'nb_tweets': df['nb_tweets'].sum(),
     #Sum of US tweets
-    #'nb_us_tweets': df['nb_us_tweets'].sum()
+    'nb_us_tweets': df['nb_us_tweets'].sum()
 }).reset_index()
 
 df.to_csv('tweet_counts_{}.csv'.format(year), index=False)
