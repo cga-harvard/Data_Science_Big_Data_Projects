@@ -1,3 +1,7 @@
+#Author: Devika Kakkar
+#Modified by: Xiaokang Fu
+#Date:9/7/22
+
 import pandas as pd
 from pymapd import connect
 from os import listdir
