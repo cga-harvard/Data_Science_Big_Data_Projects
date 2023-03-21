@@ -23,31 +23,31 @@ from twitter import *
 # In[2]:
 
 def authenticateUser (userName, appInfo):
-    if (userName == 'databases4life'):
-        oauthToken_user_1 = '1173337286-rhxiLu2YWTmWuKrlwYL6qcBvO5pReLzxli3gfGS'
-        oauthSecret_user_1 = 'cuTom9AH4rEaYG2QdYN202LBhjzHe5Ex9F29cizzQ'
+    if (userName == '***'):
+        oauthToken_user_1 = '***'
+        oauthSecret_user_1 = '***'
         return oauthToken_user_1, oauthSecret_user_1
     
-    elif (userName == 'gamalabdalwahid'):
-        oauthToken_user_2 = '568766576-9OeLy4k31jH0xGsq9FtnvGYZZBnZUs7oDxTLoQIm'
-        oauthSecret_user_2 =  '3XrsGv3OYkwhaoy2co77B4Xk5Dk7gVN0DUWACRmPBY'
+    elif (userName == '***'):
+        oauthToken_user_2 = '***'
+        oauthSecret_user_2 =  '***'
         return oauthToken_user_2, oauthSecret_user_2
         
-    elif (userName == 'Velos_MapD'):
-        oauthToken_user_3 = '964655989-DFtRLIqlYtjLIGoolNjLptmpMgTUCkU1u6eUaqBN'
-        oauthSecret_user_3 =  '6tR1iOZNUMVyMZdB7AmJ2EswtXapwkN0sI5PkbiYzA'
+    elif (userName == '***'):
+        oauthToken_user_3 = '***'
+        oauthSecret_user_3 =  '***'
         return oauthToken_user_3, oauthSecret_user_3
         
 
-    elif (userName == 'kedahek'):
-        oauthToken_user_4 = '561011150-yKMTb56Gbj1oR5kiRoEM7ZWOv2ScZP8RL3kGZxRl'
-        oauthSecret_user_4 =  'Dw7MVHD4v4P0Kts1lbwWvv7AAZin7XJEctHcKJ08k'
+    elif (userName == '***'):
+        oauthToken_user_4 = '***'
+        oauthSecret_user_4 =  '***'
         return oauthToken_user_4, oauthSecret_user_4
         
 
-    elif (userName == 'tmostak'):
-        oauthToken_user_5 = '1173286686-4xkTwHF3FvnSKGTQHOjhuP1spmZBx1ot7y639oI'
-        oauthSecret_user_5 =  'zou9RZIidZpZ2Y3Rgbac4Ockc8cIrMPyF3ROUBiCetk'
+    elif (userName == '***'):
+        oauthToken_user_5 = '***'
+        oauthSecret_user_5 =  '***'
         return oauthToken_user_5, oauthSecret_user_5
 
 
