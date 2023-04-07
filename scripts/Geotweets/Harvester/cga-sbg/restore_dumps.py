@@ -11,7 +11,8 @@ for filename in all_files:
     print(filename)
     #archive_name="/n/cga/geotweets_merged/" + filename
     #print (archive_name)
-    cmd= "pg_restore --host localhost --port 5432 -U postgres -d postgres --section=pre-data --section=data -1 "+ filename
+    #cmd= "pg_restore --host localhost --port 5432 -U postgres -d postgres --section=pre-data --section=data -1 "+ filename
+    cmd= "pg_restore --host localhost --port 5432 -U postgres -d postgres "+ filename
     #print(cmd)
     os.system(cmd)
     #TBL= 'crawler'+'.'+'twitter'+'_'+filename.split('_')[3]+'_'+filename.split('_')[4]+filename.split('_')[5]
