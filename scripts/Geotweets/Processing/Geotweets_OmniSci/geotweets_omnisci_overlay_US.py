@@ -23,11 +23,7 @@ def sjoin_process(input_path,output_path,port,start_date,end_date):
     conn=connect(user="admin", password="HyperInteractive", host="localhost", port=port, dbname="omnisci") #use your port number
     print("Connected",conn)
 
-    # print("Connecting to Omnisci")
-    # conn=connect(user="admin", password="cg@sh1re", host="localhost",
-    #               port=6274,
-    #               dbname="omnisci") #use your port number
-    # print("Connected",conn)
+
 
     l_ni=[]
     conn.execute("DROP TABLE IF EXISTS geotweets;")
