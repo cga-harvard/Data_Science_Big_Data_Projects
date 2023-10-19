@@ -3,8 +3,8 @@
 # This is a collection of functions for downloading files from NERC #
 # to a local device.                                                #
 #                                                                   #
-# Author: Jack Hayes                                                #
-# Edited by: Mukul Rawat                                            #
+# Author: Jack Hayes (jackhayes@fas.harvard.edu)                                                #
+# Edited by: Mukul Rawat (mrawat@fas.harvard.edu)                                            #
 #                                                                   #
 # *This was compiled on 10/02/2023 in Python 3.11.4*                #
 #                                                                   #
