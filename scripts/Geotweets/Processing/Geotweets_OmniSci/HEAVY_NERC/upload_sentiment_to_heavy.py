@@ -32,7 +32,7 @@ values = {'message_id':0, 'retweets':0, 'tweet_favorites':0, 'quoted_status_id':
 # 2. just do that day, actually is one day before?
 
 now = datetime.now()
-date_need_processed = now - timedelta(days=1)
+# date_need_processed = now - timedelta(days=1)
 
 path = '/data/geotweets/sentiment_tweets_output/parquet_files/2022/' # use your path
 all_files = glob.glob(path + "/*.parquet")
@@ -41,9 +41,9 @@ all_files = glob.glob(path + "/*.parquet")
 files_need_process = []
 for item in os.listdir(path):
     # [int(i) for i in item.split("_")[:-1]]
-    date_ = date(*[int(i) for i in item.split("_")[:-1]])
-    if date_ == date_need_processed.date():
-        files_need_process.append(path + item)
+    # date_ = date(*[int(i) for i in item.split("_")[:-1]])
+    # if date_ == date_need_processed.date():
+    files_need_process.append(path + item)
 
         
 
