@@ -1,0 +1,29 @@
+# simple 403 page
+ErrorDocument 401 /bad-auth.html
+# ErrorDocument 403 /non-harvard.html
+ErrorDocument 403 /restricted.html
+ErrorDocument 404 /not-found.html
+
+Options -Indexes
+
+# attempt to restrict to Harvard sub-nets
+# order deny,allow
+# deny from all
+# allow from 128.103.0.0/16
+# allow from 140.247
+# allow from 131.142
+# allow from 134.174
+# allow from 170.223
+# allow from 155.52
+# allow from 132.183
+# allow from 10.1
+# allow from 10.0.0.0/8
+# allow from 199.94
+# allow from 65.112
+
+# CGA download auth
+# AuthType Basic
+# AuthName "CGA Restricted Content"
+# AuthBasicProvider file
+# AuthUserFile "/var/www/static/cga-download/web/download/.htpasswd"
+# require valid-user
