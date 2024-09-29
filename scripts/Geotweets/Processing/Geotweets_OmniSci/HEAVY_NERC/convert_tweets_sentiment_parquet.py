@@ -40,7 +40,8 @@ for file_name in tqdm(os.listdir(tweets_path)):
     # break  
     # data = data[['message_id', 'date', 'text', 'latitude', 'longitude']]
     data = data.set_index("message_id")
-    try:
+    try: 
+        df.drop(df.index, inplace=True)
         temp = pd.read_csv(sentiment_path+"bert_sentiment_"+file_name,sep='\t',dtype='unicode',index_col=None, 
                         compression='gzip')
     except Exception as e:
