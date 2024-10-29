@@ -23,7 +23,7 @@ for file in files:
         if temp['longitude'][i]=="True":
             temp['longitude'][i] = np.nan
     #For finding tweets in US        
-    #temp['in_usa'] = ((temp['latitude']>24) & (temp['latitude']<50) & (temp['longitude'].astype(float)>-125) & (temp['longitude'].astype(float)<-66))
+    temp['in_usa'] = ((temp['latitude']>24) & (temp['latitude']<50) & (temp['longitude'].astype(float)>-125) & (temp['longitude'].astype(float)<-66))
     temp = temp.groupby('date')
    
     temp = pd.DataFrame({
